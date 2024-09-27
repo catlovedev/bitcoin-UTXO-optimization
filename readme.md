@@ -1,4 +1,4 @@
-# UTXO Management Project
+# Bitcoin UTXO Management optimization
 
 This guide provides explaining how to utilize them effectively for managing UTXOs (Unspent Transaction Outputs) in a Bitcoin-based application.
 
@@ -26,12 +26,12 @@ To set up and run this project locally, follow these steps:
 
 1. **Clone the Repository**: First, clone this repository to your local machine using:
    ```bash
-   git clone https://github.com/bitmapers/utxo-management.git
+   git clone https://github.com/catlovedev/bitcoin-UTXO-optimization.git
    ```
 
 2. **Install Dependencies**: Navigate into your project directory and install the required dependencies:
    ```bash
-   cd utxo-management
+   cd bitcoin-UTXO-optimization
    npm install
    ```
 
@@ -56,21 +56,6 @@ To set up and run this project locally, follow these steps:
   - `@types/node`: TypeScript type definitions for Node.js.
   - `ts-node`: TypeScript execution environment and REPL for Node.js.
   - `typescript`: The TypeScript compiler.
-
-
-## File Structure
-Briefly describe the folder and file structure.
-```plaintext
-/ - Root directory
-|__ /utils - Utility scripts
-   |__ utxo.ts - Fetch UTXOs for a given address.
-   |__ wallet.ts - Represents a Bitcoin wallet functionality.
-|__ config.ts - Configuration including to Bitcoin network.
-|__ index.ts - Main script for executing transactions.
-|__ sendUTXO.ts - Send UTXO to other bitcoin address.
-|__ splitUTXO.ts - Split UTXO into smaller UTXOs with big UTXO.
-|__ mergeUTXO.ts - Merge UTXO into one big UTXO with small UTXOs.
-```
 
 
 ## Utils Functions
@@ -123,75 +108,6 @@ General function to send POST requests. Handles error retries related to specifi
 - `apikey`: (Optional) API key for authenticated requests.
 
 **Returns:** A promise that resolves to the response data as a string or undefined in case of specific errors.
-
-### Usage Example
-
-#### Getting UTXOs for a Bitcoin Address
-
-```typescript
-import { getUtxos } from './path_to_module';
-
-async function displayUtxos() {
-  const address = 'bitcoin_address_here';
-  const utxos = await getUtxos(address);
-  console.log(utxos);
-}
-
-displayUtxos();
-```
-
-#### Pushing a Bitcoin Transaction
-
-```typescript
-import { pushBTCpmt } from './path_to_module';
-
-async function sendTransaction() {
-  const rawTransaction = 'raw_transaction_data_here';
-  const txid = await pushBTCpmt(rawTransaction);
-  console.log(`Transaction ID: ${txid}`);
-}
-
-sendTransaction();
-```
-
-
-
-## Calculation Fee Function: `calculateTxFee`
-
-#### Purpose:
-
-Calculates the estimated transaction fee for a given PSBT and fee rate. The fee rate is typically expressed in satoshis per byte.
-
-#### Parameters:
-
-- `psbt` (Bitcoin.Psbt): The partially signed Bitcoin transaction.
-- `feeRate` (number): The fee rate in satoshis per byte.
-
-#### Implementation Details:
-
-1. **Mock Output Script Creation**:
-   - A dummy output script (`MOCK_OUTPUT_SCRIPT`) and value (`MOCK_OUTPUT_VALUE`) are used to mimic a real transaction condition by adding an additional output. This helps in more accurately estimating the size of the final transaction.
-
-2. **Transaction Construction**:
-   - A new Bitcoin transaction is instantiated.
-   - Inputs and their corresponding witness data from the PSBT are added to this new transaction.
-   - All outputs (from the PSBT and the mock output) are added to the transaction.
-
-3. **Size Calculation and Fee Estimation**:
-   - The virtual size of the transaction is calculated. The virtual size is a more accurate measure for fee calculation as it considers the weight of witness data.
-   - The transaction's virtual size is multiplied by the provided fee rate to estimate the fee in satoshis.
-
-#### Returns:
-
-- (number): The calculated transaction fee in satoshis.
-
-### Example Usage
-
-```javascript
-const feeRate = 1; // 1 satoshi per byte
-const estimatedFee = calculateTxFee(psbt, feeRate);
-console.log(`Estimated Transaction Fee: ${estimatedFee} satoshis`);
-```
 
 
 ## Send UTXO Function
@@ -283,4 +199,5 @@ console.log(`Estimated Transaction Fee: ${estimatedFee} satoshis`);
 
 # Conclusion
 
-The UTXO Management Project is designed to provide a comprehensive suite of utilities to facilitate efficient handling of Bitcoin transactions, ideally suited for developers and organizations involved in cryptocurrency management. By utilizing the `split`, `merge`, and `send` scripts, users can optimize their transaction processes, whether for enhancing privacy, simplifying wallet management, or executing precise fund transfers.
+As a bitcoin developer, UTXO management is the most basic and important problem. 
+If you have any issue for understanding about it, feel free to reach out of me.(https://t.me/CatLoverDev)
